@@ -761,7 +761,7 @@ include "model/functions.php";
           Registrarse en Prosystem
         </p>
         <form action="controllers/regAction.php" method="post">
-          <input class="form-control" type="hidden" name="role" placeholder="role" value="2"/>
+          <input class="form-control" type="hidden" name="role" placeholder="role" value="2" readonly/>
           <input class="form-control" type="email" name="email" placeholder="Email" />
           <input class="form-control" type="password" name="password" placeholder="Password"  />
           <input class="form-control" type="password" name="passconf" placeholder="Repeat Password"  />

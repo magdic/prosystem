@@ -273,9 +273,9 @@ include "../model/functions.php";
     <script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.min.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/scrollReveal.js"></script>
+    <!-- <script src="../js/scrollReveal.js"></script>
     <script src="../js/jquery.scrollTo.js" defer="defer"></script>
-    <script src="../js/jquery.nav.js" defer="defer"></script>
+    <script src="../js/jquery.nav.js" defer="defer"></script> -->
     <script src="../js/imagesloaded.pkgd.min.js" defer="defer"></script>
     <script src="../js/isotope.min.js" defer="defer"></script>
     <script src="../js/jquery.magnific-popup.min.js" defer="defer"></script>

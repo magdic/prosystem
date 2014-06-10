@@ -86,11 +86,11 @@ include "../model/functions.php";
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <h1><a class="navbar-brand scroll" href="#intro">Prosystem</a></h1>
+              <h1><a class="navbar-brand scroll" href="./">Prosystem</a></h1>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav pull-right">
-                <li><a href="#pricing">Mi Perfil</a></li>
+                <li><a href="">Mi Perfil</a></li>
                 <li><a href="#pricing">Estudiantes</a></li>
                 <li><a href="#pricing">Profesores</a></li>
               </ul>
@@ -273,9 +273,9 @@ include "../model/functions.php";
     <script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.min.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/scrollReveal.js"></script>
+    <!-- <script src="../js/scrollReveal.js"></script>
     <script src="../js/jquery.scrollTo.js" defer="defer"></script>
-    <script src="../js/jquery.nav.js" defer="defer"></script>
+    <script src="../js/jquery.nav.js" defer="defer"></script> -->
     <script src="../js/imagesloaded.pkgd.min.js" defer="defer"></script>
     <script src="../js/isotope.min.js" defer="defer"></script>
     <script src="../js/jquery.magnific-popup.min.js" defer="defer"></script>
