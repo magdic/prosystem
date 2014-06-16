@@ -607,10 +607,11 @@ blockquote {
   left: 0;
   right: 0;
   margin: auto;
-  max-width: 400px;
+  max-width: 500px;
+  padding-left: 20px;
+  padding-right: 20px;
   width: 100%;
   height: auto;
-  padding: 0;
   padding-top: 50px;
   overflow: auto;
 }

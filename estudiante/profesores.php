@@ -10,6 +10,7 @@ include "../model/functions.php";
 
 ?>
 <!DOCTYPE html>
+<html data-ng-app="myApp" lang="en">
 <!--[if IE 8]> <html class="no-js lt-ie9 ie8" lang="en"> <![endif]-->
 <!--[if IE 9]> <html class="ie9" lang="en"> <![endif]-->
 <!--[if IE 10]> <html class="ie10" lang="en"> <![endif]-->
@@ -86,13 +87,13 @@ include "../model/functions.php";
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <h1><a class="navbar-brand scroll" href="#intro">Prosystem</a></h1>
+              <h1><a class="navbar-brand scroll" href="./">Prosystem</a></h1>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav pull-right">
                 <li><a href="perfil.php">Mi Perfil</a></li>
                 <li><a href="#pricing">Estudiantes</a></li>
-                <li><a href="profesores.php">Profesores</a></li>
+                <li><a href="">Profesores</a></li>
               </ul>
                 <span class="user-info">
                     <small>Bienvenido,</small>
@@ -114,40 +115,75 @@ include "../model/functions.php";
     ================================================== -->
     <section id="about" class="content text-center light">
 
-      <div class="container">
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-          <div class="col-lg-12 overlay-text">
-            <h2>Estudiante</h2>
-          </div><!-- /.col-lg-12 -->
-        </div><!-- /.row -->
+<div class="page-content"  >
+      	<div ng-controller="customersCrtl">
+			<div class="container">
+			    <div class="row">
+			        <div class="col-md-2">Cantidad de Resultados:
+			            <select data-ng-model="entryLimit" class="form-control">
+			                <option>5</option>
+			                <option>10</option>
+			                <option>20</option>
+			                <option>50</option>
+			                <option>100</option>
+			            </select>
+			        </div>
+					<div class="col-md-2">Zona:
+			            <select ng-model="search" ng-change="filter()"class="form-control">
+			                <option>San Ramón</option>
+			                <option>Palmares</option>
+			                <option>Naranjo</option>
+			                <option>Orotina</option>
+			            </select>
+			        </div>
+			        <div class="col-md-3">Búsqueda:
+			            <input type="text" ng-model="search" ng-change="filter()" placeholder="Búsqueda de Profesores..." class="form-control" />
+			        </div>
+			        <div class="col-md-4">
+			            <h5>Mostrando {{ filtered.length }} de un total de {{ totalItems}} profesores.</h5>
+			        </div>
+			    </br> 
+			    </br> 
+			    </br> 
+			    </br> 
+			    <div class="row">
+			        <div class="col-md-12" data-ng-show="filteredItems > 0">
+			            <table class="table table-striped table-bordered">
+			            <thead>
+			            <th>Nombre&nbsp;</th>
+			            <th>Zona&nbsp;</th>
+			            <th>Contactar&nbsp;</th>
+			            </thead>
+			            <tbody>
+			                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+			                    <td>{{data.name}} &nbsp; {{data.lastname}}</td>
+			                    <td>{{data.zona}}</b></td>
+			                    <td>{{data.email}}</td>
+			                </tr>
+			            </tbody>
+			            </table>
+			        </div>
+			        <div class="col-md-12" data-ng-show="filteredItems == 0">
+			            <div class="col-md-12">
+			                <h4>Profesor no encontrado.</h4>
+			            </div>
+			        </div>
+			        <div class="col-md-12" data-ng-show="filteredItems > 0">    
+			            <div data-pagination="" data-page="currentPage" data-on-select-page="setPage(page)" data-boundary-links="true" data-total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></div>
+			            
+			            
+			        	</div>
+			    	</div>
+				</div>
+			</div>
+		</div>
+  
 
-        <div class="row">
-          <div class="col-sm-4 text-center overlay-text icons">
-            <div class="icon-wrapper">
-              <i class="fa fa-cloud icon-large"></i>
-            </div>
-            <h3>El cielo es el limite</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-          </div>
-          <div class="col-sm-4 text-center overlay-text icons">
-            <div class="icon-wrapper">
-              <i class="fa fa-rocket icon-large"></i>
-            </div>
-            <h3>Lanzate al futuro</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-          </div>
-          <div class="col-sm-4 text-center overlay-text icons">
-            <div class="icon-wrapper">
-              <i class="fa fa-lightbulb-o icon-large"></i>
-            </div>
-            <h3>Refuerza tus conocimientos</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-          </div>
-        </div><!-- /.row -->
+
       </div>
 
-      <div class="overlay-bg light"></div>
+
+
 
     </section>
 
@@ -208,41 +244,7 @@ include "../model/functions.php";
 
     </footer>
 
-    <div id="login" class="overlay overlay-content">
   
-      <button type="button" class="overlay-close">Cerrar</button>
-      <section class="login-part">
-        <p class="login-overlay">
-          Ingresar
-        </p>
-        <form method="post">
-          <input class="form-control" type="email" name="u" placeholder="Email" required="required" />
-          <input class="form-control" type="password" name="p" placeholder="Password" required="required" />
-          <button type="submit" class="btn btn-primary btn-block btn-large">Ingresar</button>
-          <a href="#" class="forgot-pw">Olvido su Contraseña?</a>
-        </form>
-       </section>
-      
-    </div>
-
-    <div id="signup" class="overlay overlay-content">
-  
-      <button type="button" class="overlay-close">Cerrar</button>
-      <section class="login-part">
-        <p class="login-overlay">
-          Registrarse en Prosystem
-        </p>
-        <form method="post">
-          <input class="form-control" type="text" name="email" placeholder="Email" required="required" />
-          <input class="form-control" type="password" name="pw" placeholder="Password" required="required" />
-          <input class="form-control" type="password" name="repeat-pw" placeholder="Repeat Password" required="required" />
-          <button type="submit" class="btn btn-primary btn-block btn-large">Empezar Ahora</button>
-          <p class="disclaimer">By signing up, you agree with our <a href="#">Terminos de Servicio</a> & <a href="#">Politica de Privacidad</a></p>
-        </form>
-       </section>
-      
-    </div>
-
     <div id="terms-service" class="overlay overlay-content">
   
       <button type="button" class="overlay-close">Cerrar</button>
@@ -280,7 +282,7 @@ include "../model/functions.php";
     <script src="../js/isotope.min.js" defer="defer"></script>
     <script src="../js/jquery.magnific-popup.min.js" defer="defer"></script>
     <script src="../js/jqBootstrapValidation.js" defer="defer"></script>
-    <script src="../js/custom.js"></script>
+    <!-- <script src="../js/custom.js"></script>  -->
 
     <script src="../js/less-1.6.1.min.js"></script>
 
@@ -288,10 +290,10 @@ include "../model/functions.php";
 
       $(document).ready(function(){
 
-        isotope();
-        signupOverlay();
-        loginOverlay();
-        termServiceOverlay();
+        // isotope();
+        // signupOverlay();
+        // loginOverlay();
+        // termServiceOverlay();
 
          $('.theme-option').click(function(event){
             event.preventDefault();
@@ -318,6 +320,9 @@ include "../model/functions.php";
 
     <script type="text/javascript" src="http://use.typekit.net/ump8und.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="../js/angular.min.js"></script>
+    <script src="../js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+    <script src="../js/app.js"></script>    
 
     <?php 
     	//make sure you close the check if their online

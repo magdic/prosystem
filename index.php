@@ -266,12 +266,12 @@ include "model/functions.php";
               mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
               echo '<script>window.location.href="estudiante"</script>';
             }
-            else {
+            else if ($_SESSION['uid'] = $row['id'] && $row['role'] == 3) {
               $_SESSION['uid'] = $row['id'];
               //update the online field to 50 seconds into the future
               $time = date('U')+50;
               mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
-              echo '<script>window.location.href="app/pm/pm-panel.php"</script>';
+              echo '<script>window.location.href="profesor"</script>';
             }
 
               //update the online field to 50 seconds into the future
@@ -279,7 +279,7 @@ include "model/functions.php";
               mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
 
               //redirect them to the usersonline page
-              header('Location: usersOnline.php');
+              // header('Location: usersOnline.php');
             }
           }
         }
@@ -390,7 +390,7 @@ include "model/functions.php";
               <i class="fa fa-lightbulb-o icon-large"></i>
             </div>
             <h3>Refuerza tus conocimientos</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+            <p>Aprovecha la disponibilidad de los profesionales inscritos en nuestra página para fortalecer tus bases académicas.</p>
           </div>
         </div><!-- /.row -->
       </div>
@@ -409,7 +409,7 @@ include "model/functions.php";
           <div class="col-sm-5 overlay-text">
             <div class="vertical-align">
               <h2>Estudie con su propio profesor</h2>
-              <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+              <p>Puedes tener exclusividad con tu profe en cualquier momento y lugar de acuerdo a tus necesidades.</p>
             </div>
           </div>
         </div>
@@ -430,7 +430,7 @@ include "model/functions.php";
           <div class="col-sm-5 col-sm-offset-1">
             <div class="vertical-align">
               <h2>Planifique sus clases en Línea</h2>
-              <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+              <p>Ponte en contacto con tu profesor preferido y programe tus clases a tu conveniencia.</p>
             </div>
           </div>
         </div>
@@ -760,8 +760,8 @@ include "model/functions.php";
         <p class="login-overlay">
           Registrarse en Prosystem
         </p>
-        <form action="controllers/regAction.php" method="post">
-          <input class="form-control" type="hidden" name="role" placeholder="role" value="2" readonly/>
+        <form id="payForm" action="controllers/regAction.php" method="post">
+          <input class="form-control" id="estudiante" type="hidden" name="role" placeholder="role" readonly/>
           <input class="form-control" type="email" name="email" placeholder="Email" />
           <input class="form-control" type="password" name="password" placeholder="Password"  />
           <input class="form-control" type="password" name="passconf" placeholder="Repeat Password"  />
@@ -781,8 +781,8 @@ include "model/functions.php";
         <p class="login-overlay">
           Registrarse en Prosystem
         </p>
-        <form  action="controllers/regAction.php" method="post">
-          <input class="form-control" type="hidden" name="role" placeholder="role" value="3"/>
+        <form id="payForm" action="controllers/regAction.php" method="post">
+          <input class="form-control" type="hidden" id="profe1" name="role" placeholder="role" value="3"/>
           <input class="form-control" type="email" name="email" placeholder="Email" />
           <input class="form-control" type="password" name="password" placeholder="Password"  />
           <input class="form-control" type="password" name="passconf" placeholder="Repeat Password"  />
@@ -812,7 +812,7 @@ include "model/functions.php";
 
                         <input type="text" name="name_on_card" id="name_on_card" placeholder="Dueño Tarjeta" required>
 
-                <input type="submit" name="submit" class="btn btn-sm btn-success">
+                <input type="submit" name="submit" id="btnsubmit-1" class="btn btn-sm btn-success">
 
 
           <p class="disclaimer">Su cuenta sera creada como Profesor Regular, el primer acceso será enviado a su cuenta de correo. El cargo por crear esta cuenta es de <strong>&cent;10000</strong></p>
@@ -828,8 +828,8 @@ include "model/functions.php";
         <p class="login-overlay">
           Registrarse en Prosystem
         </p>
-        <form  action="controllers/regAction.php" method="post">
-          <input class="form-control" type="hidden" name="role" placeholder="role" value="4"/>
+        <form id="payForm" action="controllers/regAction.php" method="post">
+          <input class="form-control" type="hidden" name="role" id="profe2" placeholder="role" value="4"/>
           <input class="form-control" type="email" name="email" placeholder="Email" />
           <input class="form-control" type="password" name="password" placeholder="Password"  />
           <input class="form-control" type="password" name="passconf" placeholder="Repeat Password"  />
@@ -874,8 +874,8 @@ include "model/functions.php";
         <p class="login-overlay">
           Registrarse en Prosystem
         </p>
-        <form  action="controllers/regAction.php" method="post">
-          <input class="form-control" type="hidden" name="role" placeholder="role" value="5"/>
+        <form id="payForm" action="controllers/regAction.php" method="post">
+          <input class="form-control" type="hidden" name="role" id="profe3" placeholder="role" value="5"/>
           <input class="form-control" type="email" name="email" placeholder="Email" />
           <input class="form-control" type="password" name="password" placeholder="Password"  />
           <input class="form-control" type="password" name="passconf" placeholder="Repeat Password"  />
@@ -1080,6 +1080,28 @@ include "model/functions.php";
         loginOverlay();
         termServiceOverlay();
         privacyOverlay();
+
+        // var test = $("input[name=role]:hidden");
+        // test.val('work!');
+        $("#payForm").submit(function() {
+           $("input[id=estudiante][name=role]:hidden").val('2');
+         });
+
+        $("#payForm").submit(function() {
+           $("input[id=profe1][name=role]:hidden").attr('value','3');
+         });
+
+        $("#payForm").submit(function() {
+           $("input[id=profe2][name=role]:hidden").attr('value','4');
+         });
+
+        $("#payForm").submit(function() {
+           $("input[id=profe3][name=role]:hidden").attr('value','5');
+         });
+       
+
+
+        
 
          $('.theme-option').click(function(event){
             event.preventDefault();

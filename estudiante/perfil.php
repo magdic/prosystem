@@ -92,7 +92,7 @@ include "../model/functions.php";
               <ul class="nav navbar-nav pull-right">
                 <li><a href="">Mi Perfil</a></li>
                 <li><a href="#pricing">Estudiantes</a></li>
-                <li><a href="#pricing">Profesores</a></li>
+                <li><a href="profesores.php">Profesores</a></li>
               </ul>
                 <span class="user-info">
                     <small>Bienvenido,</small>
@@ -119,31 +119,24 @@ include "../model/functions.php";
         <div class="row">
           <div class="col-lg-12 overlay-text">
             <h2>Perfil</h2>
-          </div><!-- /.col-lg-12 -->
-        </div><!-- /.row -->
+          </div>
+        </div>
 
-        <div class="row">
-          <div class="col-sm-4 text-center overlay-text icons">
-            <div class="icon-wrapper">
-              <i class="fa fa-cloud icon-large"></i>
-            </div>
-            <h3>El cielo es el limite</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+
+          <div class="col-sm-12 text-center overlay-text icons">
+
+            <h3>Nombre</h3>
+            <p><?php echo $row['name'].' '.$row['lastname'];?></p>
+            <h3>Zona</h3>
+            <p><?php echo $row['zona'];?></p>
+            <h3>e-mail</h3>
+            <p><?php echo $row['email'];?></p>
+            <h3>Telefono</h3>
+            <p><?php echo '<b>Casa: </b>'.$row['telefonocasa'].' <br/><b>Celular:</b>'.$row['mobil'];?></p>
+
+            <a href="edit.php" class="btn edit">Editar</a>
           </div>
-          <div class="col-sm-4 text-center overlay-text icons">
-            <div class="icon-wrapper">
-              <i class="fa fa-rocket icon-large"></i>
-            </div>
-            <h3>Lanzate al futuro</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-          </div>
-          <div class="col-sm-4 text-center overlay-text icons">
-            <div class="icon-wrapper">
-              <i class="fa fa-lightbulb-o icon-large"></i>
-            </div>
-            <h3>Refuerza tus conocimientos</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-          </div>
+
         </div><!-- /.row -->
       </div>
 
@@ -208,41 +201,7 @@ include "../model/functions.php";
 
     </footer>
 
-    <div id="login" class="overlay overlay-content">
   
-      <button type="button" class="overlay-close">Cerrar</button>
-      <section class="login-part">
-        <p class="login-overlay">
-          Ingresar
-        </p>
-        <form method="post">
-          <input class="form-control" type="email" name="u" placeholder="Email" required="required" />
-          <input class="form-control" type="password" name="p" placeholder="Password" required="required" />
-          <button type="submit" class="btn btn-primary btn-block btn-large">Ingresar</button>
-          <a href="#" class="forgot-pw">Olvido su Contraseña?</a>
-        </form>
-       </section>
-      
-    </div>
-
-    <div id="signup" class="overlay overlay-content">
-  
-      <button type="button" class="overlay-close">Cerrar</button>
-      <section class="login-part">
-        <p class="login-overlay">
-          Registrarse en Prosystem
-        </p>
-        <form method="post">
-          <input class="form-control" type="text" name="email" placeholder="Email" required="required" />
-          <input class="form-control" type="password" name="pw" placeholder="Password" required="required" />
-          <input class="form-control" type="password" name="repeat-pw" placeholder="Repeat Password" required="required" />
-          <button type="submit" class="btn btn-primary btn-block btn-large">Empezar Ahora</button>
-          <p class="disclaimer">By signing up, you agree with our <a href="#">Terminos de Servicio</a> & <a href="#">Politica de Privacidad</a></p>
-        </form>
-       </section>
-      
-    </div>
-
     <div id="terms-service" class="overlay overlay-content">
   
       <button type="button" class="overlay-close">Cerrar</button>
@@ -280,7 +239,7 @@ include "../model/functions.php";
     <script src="../js/isotope.min.js" defer="defer"></script>
     <script src="../js/jquery.magnific-popup.min.js" defer="defer"></script>
     <script src="../js/jqBootstrapValidation.js" defer="defer"></script>
-    <script src="../js/custom.js"></script>
+    <!-- <script src="../js/custom.js"></script>  -->
 
     <script src="../js/less-1.6.1.min.js"></script>
 
@@ -288,10 +247,10 @@ include "../model/functions.php";
 
       $(document).ready(function(){
 
-        isotope();
-        signupOverlay();
-        loginOverlay();
-        termServiceOverlay();
+        // isotope();
+        // signupOverlay();
+        // loginOverlay();
+        // termServiceOverlay();
 
          $('.theme-option').click(function(event){
             event.preventDefault();

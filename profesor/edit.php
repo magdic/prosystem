@@ -22,7 +22,7 @@ include "../model/functions.php";
     <meta name="author" content="">
     <link rel="shortcut icon" href="ico/favicon.png">
 
-    <title>Prosystem  | Estudiante</title>
+    <title>Prosystem  | Profesor</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
@@ -57,8 +57,8 @@ include "../model/functions.php";
 		if(!$_SESSION['uid']){
 			//display and error message
 			echo "<center>You need to be logged in to user this feature!</center>";
-		}else if ($row['role'] != 2){
-			echo "<center>Esta es la seccion de Estudiantes  <b>Necesitas Iniciar Sesion como uno!</b></center>";
+		}else if ($row['role'] != 3){
+			echo "<center>Esta es la seccion de Profesores  <b>Necesitas Iniciar Sesion como uno!</b></center>";
 		} else {
 			//otherwise continue the page
 
@@ -86,13 +86,13 @@ include "../model/functions.php";
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <h1><a class="navbar-brand scroll" href="#intro">Prosystem</a></h1>
+              <h1><a class="navbar-brand scroll" href="./">Prosystem</a></h1>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav pull-right">
                 <li><a href="perfil.php">Mi Perfil</a></li>
                 <li><a href="#pricing">Estudiantes</a></li>
-                <li><a href="profesores.php">Profesores</a></li>
+                <li><a href="#pricing">Profesores</a></li>
               </ul>
                 <span class="user-info">
                     <small>Bienvenido,</small>
@@ -118,32 +118,66 @@ include "../model/functions.php";
         <!-- Three columns of text below the carousel -->
         <div class="row">
           <div class="col-lg-12 overlay-text">
-            <h2>Estudiante</h2>
-          </div><!-- /.col-lg-12 -->
-        </div><!-- /.row -->
+            <h2>Perfil</h2>
+          </div>
+        </div>
 
-        <div class="row">
+<!--         <div class="row">
           <div class="col-sm-4 text-center overlay-text icons">
             <div class="icon-wrapper">
               <i class="fa fa-cloud icon-large"></i>
             </div>
             <h3>El cielo es el limite</h3>
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
+          </div> -->
+          <div class="col-sm-12 text-center overlay-text icons">
+            <!-- <div class="icon-wrapper"> -->
+              <!-- <img src="http://www.findthatlogo.com/wp-content/gallery/pepsi-logos/old-pepsi-logo.jpg" width="125px"> -->
+              <!-- <i class="fa fa-rocket icon-large"></i> -->
+            <!-- </div> -->
+            <!-- <section class="register-part"> -->
+	            <form role="form" action="../controllers/editprofe.php" method="post" enctype="multipart/form-data">
+				<label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Nombre:</label>
+				<div class="col-sm-8">
+                    <input type="text" id="form-field-2 name" name="name" placeholder="Escriba su Nombre" value="<?php echo $row['name']  ?>" class="col-xs-12 col-sm-10 editinput">
+                </div>
+
+                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Apellido:</label>
+				<div class="col-sm-8">
+                    <input type="text" id="form-field-2 headline" name="lastname" placeholder="Escriba su Apellido" value="<?php echo $row['lastname'] ?>" class="col-xs-12 col-sm-10 editinput">
+                </div>
+
+                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Zona:</label>
+				<div class="col-sm-8">
+                    <input type="text" id="form-field-2 headline" name="zona" placeholder="Zona geografica" value="<?php echo $row['zona'] ?>" class="col-xs-12 col-sm-10 editinput">
+                </div>
+
+                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">E-mail:</label>
+				<div class="col-sm-8">
+                    <input type="email" id="form-field-2 headline" name="email" placeholder="Digite su correo@email.com" value="<?php echo $row['email']  ?>" class="col-xs-12 col-sm-10 editinput">
+                </div>
+
+                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Telefono Casa:</label>
+				<div class="col-sm-8">
+                    <input type="text" id="form-field-2 headline" name="telefonocasa" placeholder="Numero de Casa" value="<?php echo $row['telefonocasa'] ?>"class="col-xs-12 col-sm-10 editinput">
+                </div>
+
+                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Celular:</label>
+				<div class="col-sm-8">
+                    <input type="text" id="form-field-2 headline" name="mobil" id="mobil"  placeholder="Numero de Celular" value="<?php echo $row['mobil']  ?>"class="col-xs-12 col-sm-10 editinput">
+                </div>
+
+	            <input type="submit" name="submit" class="btn edit">
+	            </form>
+            <!-- </section> -->
           </div>
-          <div class="col-sm-4 text-center overlay-text icons">
-            <div class="icon-wrapper">
-              <i class="fa fa-rocket icon-large"></i>
-            </div>
-            <h3>Lanzate al futuro</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-          </div>
-          <div class="col-sm-4 text-center overlay-text icons">
+<!--           <div class="col-sm-8 text-center overlay-text icons">
             <div class="icon-wrapper">
               <i class="fa fa-lightbulb-o icon-large"></i>
             </div>
             <h3>Refuerza tus conocimientos</h3>
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-          </div>
+          </div> -->
         </div><!-- /.row -->
       </div>
 
@@ -208,41 +242,7 @@ include "../model/functions.php";
 
     </footer>
 
-    <div id="login" class="overlay overlay-content">
   
-      <button type="button" class="overlay-close">Cerrar</button>
-      <section class="login-part">
-        <p class="login-overlay">
-          Ingresar
-        </p>
-        <form method="post">
-          <input class="form-control" type="email" name="u" placeholder="Email" required="required" />
-          <input class="form-control" type="password" name="p" placeholder="Password" required="required" />
-          <button type="submit" class="btn btn-primary btn-block btn-large">Ingresar</button>
-          <a href="#" class="forgot-pw">Olvido su Contraseña?</a>
-        </form>
-       </section>
-      
-    </div>
-
-    <div id="signup" class="overlay overlay-content">
-  
-      <button type="button" class="overlay-close">Cerrar</button>
-      <section class="login-part">
-        <p class="login-overlay">
-          Registrarse en Prosystem
-        </p>
-        <form method="post">
-          <input class="form-control" type="text" name="email" placeholder="Email" required="required" />
-          <input class="form-control" type="password" name="pw" placeholder="Password" required="required" />
-          <input class="form-control" type="password" name="repeat-pw" placeholder="Repeat Password" required="required" />
-          <button type="submit" class="btn btn-primary btn-block btn-large">Empezar Ahora</button>
-          <p class="disclaimer">By signing up, you agree with our <a href="#">Terminos de Servicio</a> & <a href="#">Politica de Privacidad</a></p>
-        </form>
-       </section>
-      
-    </div>
-
     <div id="terms-service" class="overlay overlay-content">
   
       <button type="button" class="overlay-close">Cerrar</button>
@@ -280,7 +280,7 @@ include "../model/functions.php";
     <script src="../js/isotope.min.js" defer="defer"></script>
     <script src="../js/jquery.magnific-popup.min.js" defer="defer"></script>
     <script src="../js/jqBootstrapValidation.js" defer="defer"></script>
-    <script src="../js/custom.js"></script>
+    <!-- <script src="../js/custom.js"></script>  -->
 
     <script src="../js/less-1.6.1.min.js"></script>
 
@@ -288,10 +288,10 @@ include "../model/functions.php";
 
       $(document).ready(function(){
 
-        isotope();
-        signupOverlay();
-        loginOverlay();
-        termServiceOverlay();
+        // isotope();
+        // signupOverlay();
+        // loginOverlay();
+        // termServiceOverlay();
 
          $('.theme-option').click(function(event){
             event.preventDefault();

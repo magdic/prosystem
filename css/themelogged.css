@@ -2844,3 +2844,37 @@ footer.footer .icon {
   position: absolute;
 }
 
+.edit {
+  background: #88b7b3;
+  color: white;
+  padding: 0.5em 2em;
+  font-size: 1em;
+  margin: 0 1em;
+  border: 2px solid #88b7b3;
+  text-transform: uppercase;
+}
+
+.editinput {
+  width: 100%;
+  margin-bottom: 10px;
+  background: white;
+  border: none;
+  outline: none;
+  padding: 15px;
+  font-size: 1em;
+  color: #4c4c4c;
+  border: 2px solid white;
+  border-radius: 4px;
+}
+
+
+.my-labels {
+   text-align: right; 
+   bottom:-1em;
+}
+
+.page-content {
+  margin-top: 90px;
+}
+
+
