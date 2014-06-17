@@ -22,7 +22,7 @@ include "../model/functions.php";
     <meta name="author" content="">
     <link rel="shortcut icon" href="ico/favicon.png">
 
-    <title>Prosystem  | Profesor</title>
+    <title>Prosystem  | Estudiante</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
@@ -57,8 +57,8 @@ include "../model/functions.php";
 		if(!$_SESSION['uid']){
 			//display and error message
 			echo "<center>You need to be logged in to user this feature!</center>";
-		}else if ($row['role'] != 5){
-			echo "<center>Esta es la seccion de Profesores  <b>Necesitas Iniciar Sesion como uno!</b></center>";
+		}else if ($row['role'] != 1){
+			echo "<center>Esta es la seccion de Administradores  <b>Necesitas Iniciar Sesion como uno!</b></center>";
 		} else {
 			//otherwise continue the page
 
@@ -122,21 +122,8 @@ include "../model/functions.php";
           </div>
         </div>
 
-<!--         <div class="row">
-          <div class="col-sm-4 text-center overlay-text icons">
-            <div class="icon-wrapper">
-              <i class="fa fa-cloud icon-large"></i>
-            </div>
-            <h3>El cielo es el limite</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-          </div> -->
           <div class="col-sm-12 text-center overlay-text icons">
-            <!-- <div class="icon-wrapper"> -->
-              <!-- <img src="http://www.findthatlogo.com/wp-content/gallery/pepsi-logos/old-pepsi-logo.jpg" width="125px"> -->
-              <!-- <i class="fa fa-rocket icon-large"></i> -->
-            <!-- </div> -->
-            <!-- <section class="register-part"> -->
-	            <form role="form" action="../controllers/editprofe.php" method="post" enctype="multipart/form-data">
+	            <form role="form" action="../controllers/edituser.php" method="post" enctype="multipart/form-data">
 				<label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Nombre:</label>
 				<div class="col-sm-8">
                     <input type="text" id="form-field-2 name" name="name" placeholder="Escriba su Nombre" value="<?php echo $row['name']  ?>" class="col-xs-12 col-sm-10 editinput">
@@ -148,7 +135,7 @@ include "../model/functions.php";
                 </div>
 
                 <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Zona:</label>
-        <div class="col-sm-8">
+				<div class="col-sm-8">
                
                     <select name="zona" id="zona" class="form-control col-xs-12 col-sm-10" >
                         <option>San Ramón</option>
@@ -166,31 +153,12 @@ include "../model/functions.php";
 
                 <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Telefono Casa:</label>
 				<div class="col-sm-8">
-                    <input type="text" id="form-field-2 headline" name="telefonocasa" pattern=".{8,8}" maxlength="8" placeholder="Numero de Casa" value="<?php echo $row['telefonocasa'] ?>"class="col-xs-12 col-sm-10 editinput">
+                    <input type="text" id="form-field-2 headline" name="telefonocasa" placeholder="Numero de Casa" value="<?php echo $row['telefonocasa'] ?>"class="col-xs-12 col-sm-10 editinput">
                 </div>
 
                 <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Celular:</label>
 				<div class="col-sm-8">
-                    <input type="text" id="form-field-2 headline" name="mobil" id="mobil" pattern=".{8,8}" maxlength="8" placeholder="Numero de Celular" value="<?php echo $row['mobil']  ?>"class="col-xs-12 col-sm-10 editinput">
-                </div>
-
-                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Facebook:</label>
-        <div class="col-sm-8">
-                    <input type="text" id="form-field-2 headline" name="facebook" id="facebook"  placeholder="Facebook" value="<?php echo $row['facebook']  ?>"class="col-xs-12 col-sm-10 editinput">
-                </div>
-
-              <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Años de Experiencia:</label>
-        <div class="col-sm-8">
-                    <input type="text" id="form-field-2 headline" pattern=".{1,2}" maxlength="2" name="experiencia" id="experiencia"  placeholder="Experiencia" value="<?php echo $row['experiencia']  ?>"class="col-xs-12 col-sm-10 editinput">
-                </div>
-
-                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Materias:</label>
-        <div class="col-sm-8">
-                    <input type="checkbox" id="form-field-2 headline" name="materia1" id="materia1"  value="Español" class="col-xs-1 col-sm-1 editinput">Español</br>
-                    <input type="checkbox" id="form-field-2 headline" name="materia2" id="materia2"  value="Estudios Sociales / Civica" class="col-xs-1 col-sm-1 editinput">Estudios Sociales / Civica</br>
-                    <input type="checkbox" id="form-field-2 headline" name="materia2" id="materia3"  value="Ciencias" class="col-xs-1 col-sm-1 editinput">Ciencias</br>
-                    <input type="checkbox" id="form-field-2 headline" name="materia2" id="materia4"  value="Matemáticas" class="col-xs-1 col-sm-1 editinput">Matemáticas</br>
-                    <input type="checkbox" id="form-field-2 headline" name="materia2" id="materia5"  value="Inglés" class="col-xs-1 col-sm-1 editinput">Inglés</br>
+                    <input type="text" id="form-field-2 headline" name="mobil" id="mobil"  placeholder="Numero de Celular" value="<?php echo $row['mobil']  ?>"class="col-xs-12 col-sm-10 editinput">
                 </div>
 
 	            <input type="submit" name="submit" class="btn edit">
@@ -251,6 +219,8 @@ include "../model/functions.php";
               <h3>Documentación</h3>
               <ul class="list-unstyled">
                 <li><a href="#">Ayuda del Sitio</a></li>
+                <!-- <li><a href="#">Developer API</a></li> -->
+                <!-- <li><a href="#">Product Markdown</a></li>              -->
               </ul>
             </div>  
           </div>
@@ -311,7 +281,10 @@ include "../model/functions.php";
 
       $(document).ready(function(){
 
-
+        // isotope();
+        // signupOverlay();
+        // loginOverlay();
+        // termServiceOverlay();
 
          $('.theme-option').click(function(event){
             event.preventDefault();
@@ -324,13 +297,15 @@ include "../model/functions.php";
 
       });
 
-      $("form").on("click", ":checkbox", function(event){
-  $(":checkbox:not(:checked)", this.form).prop("disabled", function(){
-    return $(this.form).find(":checkbox:checked").length == 5;
-  });
-});
-
-
+      // $.each(['css/theme.less'], function (index, fileName) {
+      //     var $sheet = $('<link />', {
+      //         href: fileName,
+      //         rel: 'stylesheet/less',
+      //         type: 'text/css'
+      //     }).appendTo('head');
+      //     less.sheets.push($sheet[0]);
+      // });
+      // less.refresh();
 
     </script>
 

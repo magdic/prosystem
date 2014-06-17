@@ -2495,6 +2495,7 @@ footer.footer .icon {
   section.content h2 {
     font-size: 2.5em;
     padding: 0 1em;
+    margin: 2.3em auto 0.5em;
   }
   section.content p {
     font-size: 1.15em;
@@ -2704,6 +2705,7 @@ footer.footer .icon {
   section.content h2 {
     font-size: 1.5em;
     padding: 0 0.4em;
+    margin: 4.3em auto 0.5em;
   }
   section p,
   section.content p {
@@ -2871,6 +2873,12 @@ footer.footer .icon {
 .my-labels {
    text-align: right; 
    bottom:-1em;
+}
+
+@media (max-width: 768px) {
+  .my-labels {
+   bottom:0;
+  }
 }
 
 .page-content {

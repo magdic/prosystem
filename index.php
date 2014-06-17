@@ -271,6 +271,20 @@ include "model/functions.php";
               //update the online field to 50 seconds into the future
               $time = date('U')+50;
               mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
+              echo '<script>window.location.href="profe3"</script>';
+            }
+            else if ($_SESSION['uid'] = $row['id'] && $row['role'] == 4) {
+              $_SESSION['uid'] = $row['id'];
+              //update the online field to 50 seconds into the future
+              $time = date('U')+50;
+              mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
+              echo '<script>window.location.href="profe2"</script>';
+            }
+            else if ($_SESSION['uid'] = $row['id'] && $row['role'] == 5) {
+              $_SESSION['uid'] = $row['id'];
+              //update the online field to 50 seconds into the future
+              $time = date('U')+50;
+              mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
               echo '<script>window.location.href="profesor"</script>';
             }
 
@@ -425,7 +439,7 @@ include "model/functions.php";
       <div class="container">
         <div class="row">
           <div class="col-sm-5 text-center">
-            <img class="margin-top img-responsive" src="img/thumbs/thumb3.jpg" alt="Generic placeholder image" data-scrollreveal="move 100px and enter from the left after 0.55s" width="429">
+            <img class="margin-top img-responsive" src="img/thumbs/thumb6.jpg" alt="Generic placeholder image" data-scrollreveal="move 100px and enter from the left after 0.55s" width="429">
           </div>
           <div class="col-sm-5 col-sm-offset-1">
             <div class="vertical-align">
@@ -555,11 +569,6 @@ include "model/functions.php";
               <div class="item">
                 <a href="img/thumbs/thumb5.jpg" class="popup-gallery">
                   <img src="img/thumbs/thumb5.jpg" alt="Prestige Portfolio Thumbnail Image">
-                </a>
-              </div>
-              <div class="item">
-                <a href="img/thumbs/thumb6.jpg" class="popup-gallery">
-                  <img src="img/thumbs/thumb6.jpg" alt="Prestige Portfolio Thumbnail Image">
                 </a>
               </div>
 
@@ -723,8 +732,8 @@ include "model/functions.php";
         </div>
         <div class="row">
           <div class="col-lg-12 text-center">
-            <a class="icon" href="http://www.twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a>
-            <a class="icon" href="http://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a class="icon" href="https://twitter.com/Prosystem4" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a class="icon" href="https://www.facebook.com/pages/PROsystem/247843665406407?fref=ts" target="_blank"><i class="fa fa-facebook"></i></a>
           </div>
         </div>
       </div>

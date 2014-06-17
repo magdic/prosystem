@@ -91,7 +91,7 @@ include "../model/functions.php";
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav pull-right">
                 <li><a href="perfil.php">Mi Perfil</a></li>
-                <li><a href="#pricing">Estudiantes</a></li>
+                <li><a href="estudiantes.php">Estudiantes</a></li>
                 <li><a href="profesores.php">Profesores</a></li>
               </ul>
                 <span class="user-info">

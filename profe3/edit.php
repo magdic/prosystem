@@ -57,7 +57,7 @@ include "../model/functions.php";
 		if(!$_SESSION['uid']){
 			//display and error message
 			echo "<center>You need to be logged in to user this feature!</center>";
-		}else if ($row['role'] != 5){
+		}else if ($row['role'] != 3){
 			echo "<center>Esta es la seccion de Profesores  <b>Necesitas Iniciar Sesion como uno!</b></center>";
 		} else {
 			//otherwise continue the page
@@ -136,7 +136,7 @@ include "../model/functions.php";
               <!-- <i class="fa fa-rocket icon-large"></i> -->
             <!-- </div> -->
             <!-- <section class="register-part"> -->
-	            <form role="form" action="../controllers/editprofe.php" method="post" enctype="multipart/form-data">
+	            <form role="form" action="../controllers/editprofe3.php" method="post" enctype="multipart/form-data">
 				<label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Nombre:</label>
 				<div class="col-sm-8">
                     <input type="text" id="form-field-2 name" name="name" placeholder="Escriba su Nombre" value="<?php echo $row['name']  ?>" class="col-xs-12 col-sm-10 editinput">
@@ -326,7 +326,7 @@ include "../model/functions.php";
 
       $("form").on("click", ":checkbox", function(event){
   $(":checkbox:not(:checked)", this.form).prop("disabled", function(){
-    return $(this.form).find(":checkbox:checked").length == 5;
+    return $(this.form).find(":checkbox:checked").length == 1;
   });
 });
 

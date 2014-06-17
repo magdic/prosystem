@@ -57,7 +57,7 @@ include "../model/functions.php";
 		if(!$_SESSION['uid']){
 			//display and error message
 			echo "<center>You need to be logged in to user this feature!</center>";
-		}else if ($row['role'] != 3){
+		}else if ($row['role'] != 5){
 			echo "<center>Esta es la seccion de Profesores  <b>Necesitas Iniciar Sesion como uno!</b></center>";
 		} else {
 			//otherwise continue the page
@@ -91,8 +91,8 @@ include "../model/functions.php";
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav pull-right">
                 <li><a href="">Mi Perfil</a></li>
-                <li><a href="#pricing">Estudiantes</a></li>
-                <li><a href="#pricing">Profesores</a></li>
+                <li><a href="estudiantes.php">Estudiantes</a></li>
+                <li><a href="profesores.php">Profesores</a></li>
               </ul>
                 <span class="user-info">
                     <small>Bienvenido,</small>

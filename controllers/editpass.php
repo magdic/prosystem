@@ -18,19 +18,25 @@ $uid = $_SESSION['uid'];
 
 			//protect and then add the posted data to variables
 			// $username = protect($_POST['username']);
-			$name = protect($_POST['name']);
-			$lastname = protect($_POST['lastname']);
-			$zona = protect($_POST['zona']);
-			$email = protect($_POST['email']);
-			$telefonocasa = protect($_POST['telefonocasa']);
-			$mobil = protect($_POST['mobil']);
-			$facebook = protect($_POST['facebook']);
+			$password = protect($_POST['password']);
+			$passconf = protect($_POST['passconf']);
+
+			//check if the password and confirm password match
+							if($password != $passconf){
+								//if not display error message
+								echo "Pass incorrectas";
+								// header("location: ../index.php?message=$msg");
+							} else {
+
+									$passmd5 = md5($password);
+
+
+									mysql_query("UPDATE users SET password='$passmd5' WHERE id='$uid'");
+									header("location: ../estudiante/perfil.php");
+							}
 
 		}
 
-
-mysql_query("UPDATE users SET name='$name', lastname='$lastname', zona='$zona', email='$email', telefonocasa='$telefonocasa', mobil='$mobil', facebook='$facebook' WHERE id='$uid'");
-header("location: ../estudiante/perfil.php");
   
 
  		

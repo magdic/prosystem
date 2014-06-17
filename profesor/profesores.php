@@ -10,6 +10,7 @@ include "../model/functions.php";
 
 ?>
 <!DOCTYPE html>
+<html data-ng-app="myApp" lang="en">
 <!--[if IE 8]> <html class="no-js lt-ie9 ie8" lang="en"> <![endif]-->
 <!--[if IE 9]> <html class="ie9" lang="en"> <![endif]-->
 <!--[if IE 10]> <html class="ie10" lang="en"> <![endif]-->
@@ -22,7 +23,7 @@ include "../model/functions.php";
     <meta name="author" content="">
     <link rel="shortcut icon" href="ico/favicon.png">
 
-    <title>Prosystem  | Profesor</title>
+    <title>Prosystem  | Estudiante</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
@@ -92,7 +93,7 @@ include "../model/functions.php";
               <ul class="nav navbar-nav pull-right">
                 <li><a href="perfil.php">Mi Perfil</a></li>
                 <li><a href="estudiantes.php">Estudiantes</a></li>
-                <li><a href="profesores.php">Profesores</a></li>
+                <li><a href="">Profesores</a></li>
               </ul>
                 <span class="user-info">
                     <small>Bienvenido,</small>
@@ -114,100 +115,84 @@ include "../model/functions.php";
     ================================================== -->
     <section id="about" class="content text-center light">
 
-      <div class="container">
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-          <div class="col-lg-12 overlay-text">
-            <h2>Perfil</h2>
-          </div>
-        </div>
+<div class="page-content"  >
+      	<div ng-controller="customersCrtl">
+			<div class="container">
+			    <div class="row">
+			        <div class="col-md-2">Cantidad de Resultados:
+			            <select data-ng-model="entryLimit" class="form-control">
+			                <option>5</option>
+			                <option>10</option>
+			                <option>20</option>
+			                <option>50</option>
+			                <option>100</option>
+			            </select>
+			        </div>
+					<div class="col-md-2">Zona:
+			            <select ng-model="search" ng-change="filter()"class="form-control">
+			                <option>San Ramón</option>
+			                <option>Palmares</option>
+			                <option>Naranjo</option>
+			                <option>Orotina</option>
+			            </select>
+			        </div>
+          <div class="col-md-2">Materias:
+                  <select ng-model="search" ng-change="filter()"class="form-control">
+                      <option>Español</option>
+                      <option>Estudios Sociales / Civica</option>
+                      <option>Ciencias</option>
+                      <option>Matemáticas</option>
+                      <option>Inglés</option>
+                  </select>
+              </div>
+			        <div class="col-md-3">Búsqueda:
+			            <input type="text" ng-model="search" ng-change="filter()" placeholder="Búsqueda de Profesores..." class="form-control" />
+			        </div>
+			        <div class="col-md-4">
+			            <h5>Mostrando {{ filtered.length }} de un total de {{ totalItems}} profesores.</h5>
+			        </div>
+			    </br> 
+			    </br> 
+			    </br> 
+			    </br> 
+			    <div class="row">
+			        <div class="col-md-12" data-ng-show="filteredItems > 0">
+			            <table class="table table-striped table-bordered">
+			            <thead>
+			            <th>Nombre&nbsp;</th>
+			            <th>Zona&nbsp;</th>
+			            <th>Contactar&nbsp;</th>
+			            </thead>
+			            <tbody>
+			                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+			                    <td>{{data.name}} &nbsp; {{data.lastname}}</td>
+			                    <td>{{data.zona}}</b></td>
+			                    <td>{{data.email}}</td>
+			                </tr>
+			            </tbody>
+			            </table>
+			        </div>
+			        <div class="col-md-12" data-ng-show="filteredItems == 0">
+			            <div class="col-md-12">
+			                <h4>Profesor no encontrado.</h4>
+			            </div>
+			        </div>
+			        <div class="col-md-12" data-ng-show="filteredItems > 0">    
+			            <div data-pagination="" data-page="currentPage" data-on-select-page="setPage(page)" data-boundary-links="true" data-total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" data-previous-text="&laquo;" data-next-text="&raquo;"></div>
+			            
+			            
+			        	</div>
+			    	</div>
+				</div>
+			</div>
+		</div>
+  
 
-<!--         <div class="row">
-          <div class="col-sm-4 text-center overlay-text icons">
-            <div class="icon-wrapper">
-              <i class="fa fa-cloud icon-large"></i>
-            </div>
-            <h3>El cielo es el limite</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-          </div> -->
-          <div class="col-sm-12 text-center overlay-text icons">
-            <!-- <div class="icon-wrapper"> -->
-              <!-- <img src="http://www.findthatlogo.com/wp-content/gallery/pepsi-logos/old-pepsi-logo.jpg" width="125px"> -->
-              <!-- <i class="fa fa-rocket icon-large"></i> -->
-            <!-- </div> -->
-            <!-- <section class="register-part"> -->
-	            <form role="form" action="../controllers/editprofe.php" method="post" enctype="multipart/form-data">
-				<label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Nombre:</label>
-				<div class="col-sm-8">
-                    <input type="text" id="form-field-2 name" name="name" placeholder="Escriba su Nombre" value="<?php echo $row['name']  ?>" class="col-xs-12 col-sm-10 editinput">
-                </div>
 
-                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Apellido:</label>
-				<div class="col-sm-8">
-                    <input type="text" id="form-field-2 headline" name="lastname" placeholder="Escriba su Apellido" value="<?php echo $row['lastname'] ?>" class="col-xs-12 col-sm-10 editinput">
-                </div>
-
-                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Zona:</label>
-        <div class="col-sm-8">
-               
-                    <select name="zona" id="zona" class="form-control col-xs-12 col-sm-10" >
-                        <option>San Ramón</option>
-                        <option>Palmares</option>
-                        <option>Naranjo</option>
-                        <option>Orotina</option>
-                        <option selected="<?php echo $row['zona'] ?>"><?php echo $row['zona'] ?></option>
-                    </select>
-                </div>
-
-                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">E-mail:</label>
-				<div class="col-sm-8">
-                    <input type="email" id="form-field-2 headline" name="email" placeholder="Digite su correo@email.com" value="<?php echo $row['email']  ?>" class="col-xs-12 col-sm-10 editinput">
-                </div>
-
-                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Telefono Casa:</label>
-				<div class="col-sm-8">
-                    <input type="text" id="form-field-2 headline" name="telefonocasa" pattern=".{8,8}" maxlength="8" placeholder="Numero de Casa" value="<?php echo $row['telefonocasa'] ?>"class="col-xs-12 col-sm-10 editinput">
-                </div>
-
-                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Celular:</label>
-				<div class="col-sm-8">
-                    <input type="text" id="form-field-2 headline" name="mobil" id="mobil" pattern=".{8,8}" maxlength="8" placeholder="Numero de Celular" value="<?php echo $row['mobil']  ?>"class="col-xs-12 col-sm-10 editinput">
-                </div>
-
-                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Facebook:</label>
-        <div class="col-sm-8">
-                    <input type="text" id="form-field-2 headline" name="facebook" id="facebook"  placeholder="Facebook" value="<?php echo $row['facebook']  ?>"class="col-xs-12 col-sm-10 editinput">
-                </div>
-
-              <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Años de Experiencia:</label>
-        <div class="col-sm-8">
-                    <input type="text" id="form-field-2 headline" pattern=".{1,2}" maxlength="2" name="experiencia" id="experiencia"  placeholder="Experiencia" value="<?php echo $row['experiencia']  ?>"class="col-xs-12 col-sm-10 editinput">
-                </div>
-
-                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Materias:</label>
-        <div class="col-sm-8">
-                    <input type="checkbox" id="form-field-2 headline" name="materia1" id="materia1"  value="Español" class="col-xs-1 col-sm-1 editinput">Español</br>
-                    <input type="checkbox" id="form-field-2 headline" name="materia2" id="materia2"  value="Estudios Sociales / Civica" class="col-xs-1 col-sm-1 editinput">Estudios Sociales / Civica</br>
-                    <input type="checkbox" id="form-field-2 headline" name="materia2" id="materia3"  value="Ciencias" class="col-xs-1 col-sm-1 editinput">Ciencias</br>
-                    <input type="checkbox" id="form-field-2 headline" name="materia2" id="materia4"  value="Matemáticas" class="col-xs-1 col-sm-1 editinput">Matemáticas</br>
-                    <input type="checkbox" id="form-field-2 headline" name="materia2" id="materia5"  value="Inglés" class="col-xs-1 col-sm-1 editinput">Inglés</br>
-                </div>
-
-	            <input type="submit" name="submit" class="btn edit">
-	            </form>
-            <!-- </section> -->
-          </div>
-<!--           <div class="col-sm-8 text-center overlay-text icons">
-            <div class="icon-wrapper">
-              <i class="fa fa-lightbulb-o icon-large"></i>
-            </div>
-            <h3>Refuerza tus conocimientos</h3>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-          </div> -->
-        </div><!-- /.row -->
       </div>
 
-      <div class="overlay-bg light"></div>
+
+
 
     </section>
 
@@ -245,12 +230,15 @@ include "../model/functions.php";
               <ul class="list-unstyled">
                 <li><a href="#about">Acerca de</a></li>
                 <li><a href="#">Nuestro Equipo</a></li>
+                <!-- <li><a href="#">Jobs&emsp;<span class="label label-info">We're hiring!</span></a></li>            -->
               </ul>
             </div>
             <div class="col-sm-3 col-md-3">
               <h3>Documentación</h3>
               <ul class="list-unstyled">
                 <li><a href="#">Ayuda del Sitio</a></li>
+                <!-- <li><a href="#">Developer API</a></li> -->
+                <!-- <li><a href="#">Product Markdown</a></li>              -->
               </ul>
             </div>  
           </div>
@@ -311,7 +299,10 @@ include "../model/functions.php";
 
       $(document).ready(function(){
 
-
+        // isotope();
+        // signupOverlay();
+        // loginOverlay();
+        // termServiceOverlay();
 
          $('.theme-option').click(function(event){
             event.preventDefault();
@@ -324,18 +315,23 @@ include "../model/functions.php";
 
       });
 
-      $("form").on("click", ":checkbox", function(event){
-  $(":checkbox:not(:checked)", this.form).prop("disabled", function(){
-    return $(this.form).find(":checkbox:checked").length == 5;
-  });
-});
-
-
+      // $.each(['css/theme.less'], function (index, fileName) {
+      //     var $sheet = $('<link />', {
+      //         href: fileName,
+      //         rel: 'stylesheet/less',
+      //         type: 'text/css'
+      //     }).appendTo('head');
+      //     less.sheets.push($sheet[0]);
+      // });
+      // less.refresh();
 
     </script>
 
     <script type="text/javascript" src="http://use.typekit.net/ump8und.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="../js/angular.min.js"></script>
+    <script src="../js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+    <script src="../js/app.js"></script>    
 
     <?php 
     	//make sure you close the check if their online

@@ -22,7 +22,7 @@ include "../model/functions.php";
     <meta name="author" content="">
     <link rel="shortcut icon" href="ico/favicon.png">
 
-    <title>Prosystem Equipo | Admin Section</title>
+    <title>Prosystem  | Estudiante</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
@@ -47,26 +47,26 @@ include "../model/functions.php";
   </head>
 
   <body>
-  		<?php
-	    $uid = $_SESSION['uid'];
-		$res = mysql_query("SELECT * FROM `users` WHERE `id` = '".$uid."'");
-		//split all fields fom the correct row into an associative array
-		$row = mysql_fetch_assoc($res);
+      <?php
+      $uid = $_SESSION['uid'];
+    $res = mysql_query("SELECT * FROM `users` WHERE `id` = '".$uid."'");
+    //split all fields fom the correct row into an associative array
+    $row = mysql_fetch_assoc($res);
 
-		//if the login session does not exist therefore meaning the user is not logged in
-		if(!$_SESSION['uid']){
-			//display and error message
-			echo "<center>You need to be logged in to user this feature!</center>";
-		}else if ($row['role'] != 1){
-			echo "<center>You are not an <b>admin</b> site!</center>";
-		} else {
-			//otherwise continue the page
+    //if the login session does not exist therefore meaning the user is not logged in
+    if(!$_SESSION['uid']){
+      //display and error message
+      echo "<center>You need to be logged in to user this feature!</center>";
+    }else if ($row['role'] != 1){
+      echo "<center>Esta es la seccion de Administradores  <b>Necesitas Iniciar Sesion como uno!</b></center>";
+    } else {
+      //otherwise continue the page
 
-			//this is out update script which should be used in each page to update the users online time
-			$time = date('U')+50;
-			$update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
-			
-			?>
+      //this is out update script which should be used in each page to update the users online time
+      $time = date('U')+50;
+      $update = mysql_query("UPDATE `users` SET `online` = '".$time."' WHERE `id` = '".$_SESSION['uid']."'");
+      
+      ?>
 
 
     <!-- end Theme Options (for demo purposes only) -->
@@ -86,13 +86,13 @@ include "../model/functions.php";
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <h1><a class="navbar-brand scroll" href="./">Prosystem</a></h1>
+              <h1><a class="navbar-brand scroll" href="#intro">Prosystem</a></h1>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav pull-right">
                 <li><a href="perfil.php">Mi Perfil</a></li>
-                <li><a href="#pricing">Estudiantes</a></li>
-                <li><a href="#pricing">Profesores</a></li>
+                <li><a href="estudiantes.php">Estudiantes</a></li>
+                <li><a href="profesores.php">Profesores</a></li>
               </ul>
                 <span class="user-info">
                     <small>Bienvenido,</small>
@@ -118,7 +118,7 @@ include "../model/functions.php";
         <!-- Three columns of text below the carousel -->
         <div class="row">
           <div class="col-lg-12 overlay-text">
-            <h2>Admin Section</h2>
+            <h2>Estudiante</h2>
           </div><!-- /.col-lg-12 -->
         </div><!-- /.row -->
 
@@ -208,7 +208,60 @@ include "../model/functions.php";
 
     </footer>
 
-   
+    <div id="login" class="overlay overlay-content">
+  
+      <button type="button" class="overlay-close">Cerrar</button>
+      <section class="login-part">
+        <p class="login-overlay">
+          Ingresar
+        </p>
+        <form method="post">
+          <input class="form-control" type="email" name="u" placeholder="Email" required="required" />
+          <input class="form-control" type="password" name="p" placeholder="Password" required="required" />
+          <button type="submit" class="btn btn-primary btn-block btn-large">Ingresar</button>
+          <a href="#" class="forgot-pw">Olvido su Contraseña?</a>
+        </form>
+       </section>
+      
+    </div>
+
+    <div id="signup" class="overlay overlay-content">
+  
+      <button type="button" class="overlay-close">Cerrar</button>
+      <section class="login-part">
+        <p class="login-overlay">
+          Registrarse en Prosystem
+        </p>
+        <form method="post">
+          <input class="form-control" type="text" name="email" placeholder="Email" required="required" />
+          <input class="form-control" type="password" name="pw" placeholder="Password" required="required" />
+          <input class="form-control" type="password" name="repeat-pw" placeholder="Repeat Password" required="required" />
+          <button type="submit" class="btn btn-primary btn-block btn-large">Empezar Ahora</button>
+          <p class="disclaimer">By signing up, you agree with our <a href="#">Terminos de Servicio</a> & <a href="#">Politica de Privacidad</a></p>
+        </form>
+       </section>
+      
+    </div>
+
+    <div id="terms-service" class="overlay overlay-content">
+  
+      <button type="button" class="overlay-close">Cerrar</button>
+      <section class="login-part">
+        <p class="login-overlay">
+          Terminos de Servicio
+        </p>
+
+          <p>By signing up, you agree with our <span>Terms of Service,</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+       </section>
+      
+    </div>
+
 
  
   
@@ -218,7 +271,7 @@ include "../model/functions.php";
     <script src="../js/jquery-1.10.2.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/classie.js"></script>
-	<script src="../js/cbpAnimatedHeader.min.js"></script>
+  <script src="../js/cbpAnimatedHeader.min.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
     <!-- <script src="../js/scrollReveal.js"></script>
     <script src="../js/jquery.scrollTo.js" defer="defer"></script>
@@ -251,14 +304,24 @@ include "../model/functions.php";
 
       });
 
+      // $.each(['css/theme.less'], function (index, fileName) {
+      //     var $sheet = $('<link />', {
+      //         href: fileName,
+      //         rel: 'stylesheet/less',
+      //         type: 'text/css'
+      //     }).appendTo('head');
+      //     less.sheets.push($sheet[0]);
+      // });
+      // less.refresh();
+
     </script>
 
     <script type="text/javascript" src="http://use.typekit.net/ump8und.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
     <?php 
-    	//make sure you close the check if their online
-		}
-	?>
+      //make sure you close the check if their online
+    }
+  ?>
   </body>
 </html>

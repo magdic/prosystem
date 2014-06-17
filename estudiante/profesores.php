@@ -92,7 +92,7 @@ include "../model/functions.php";
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav pull-right">
                 <li><a href="perfil.php">Mi Perfil</a></li>
-                <li><a href="#pricing">Estudiantes</a></li>
+                <li><a href="estudiantes.php">Estudiantes</a></li>
                 <li><a href="">Profesores</a></li>
               </ul>
                 <span class="user-info">
@@ -136,6 +136,15 @@ include "../model/functions.php";
 			                <option>Orotina</option>
 			            </select>
 			        </div>
+              <div class="col-md-2">Materias:
+                  <select ng-model="search" ng-change="filter()"class="form-control">
+                      <option>Español</option>
+                      <option>Estudios Sociales / Civica</option>
+                      <option>Ciencias</option>
+                      <option>Matemáticas</option>
+                      <option>Inglés</option>
+                  </select>
+              </div>
 			        <div class="col-md-3">Búsqueda:
 			            <input type="text" ng-model="search" ng-change="filter()" placeholder="Búsqueda de Profesores..." class="form-control" />
 			        </div>
@@ -158,7 +167,7 @@ include "../model/functions.php";
 			                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
 			                    <td>{{data.name}} &nbsp; {{data.lastname}}</td>
 			                    <td>{{data.zona}}</b></td>
-			                    <td>{{data.email}}</td>
+			                    <td><a href="infoprofe.php?id={{data.id}}">{{data.email}}</a></td>
 			                </tr>
 			            </tbody>
 			            </table>

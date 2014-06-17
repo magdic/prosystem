@@ -34,7 +34,7 @@ $uid = $_SESSION['uid'];
 
 
 mysql_query("UPDATE users SET name='$name', lastname='$lastname', zona='$zona', email='$email', telefonocasa='$telefonocasa', mobil='$mobil', facebook='$facebook', experiencia='$experiencia', materia1='$materia1', materia2='$materia2', materia3='$materia3', materia4='$materia4', materia5='$materia5' WHERE id='$uid'");
-header("location: ../profesor/perfil.php");
+header("location: ../profe2/perfil.php");
   
 
  		

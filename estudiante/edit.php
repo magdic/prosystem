@@ -91,7 +91,7 @@ include "../model/functions.php";
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav pull-right">
                 <li><a href="perfil.php">Mi Perfil</a></li>
-                <li><a href="#pricing">Estudiantes</a></li>
+                <li><a href="estudiantes.php">Estudiantes</a></li>
                 <li><a href="profesores.php">Profesores</a></li>
               </ul>
                 <span class="user-info">
@@ -159,6 +159,11 @@ include "../model/functions.php";
                 <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Celular:</label>
 				<div class="col-sm-8">
                     <input type="text" id="form-field-2 headline" name="mobil" id="mobil"  placeholder="Numero de Celular" value="<?php echo $row['mobil']  ?>"class="col-xs-12 col-sm-10 editinput">
+                </div>
+
+                <label class="col-sm-3 control-label no-padding-right my-labels" for="form-field-2">Facebook:</label>
+        <div class="col-sm-8">
+                    <input type="text" id="form-field-2 headline" name="facebook" id="facebook"  placeholder="Facebook" value="<?php echo $row['facebook']  ?>"class="col-xs-12 col-sm-10 editinput">
                 </div>
 
 	            <input type="submit" name="submit" class="btn edit">
